@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package user;
+
+service User {
+  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse) {}
+  rpc AuthenticateUser(AuthenticateUserRequest) returns (AuthenticateUserResponse) {}
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  rpc CheckUserCredentials(UserRequest) returns (UserResponse) {}
+}
+
+message RegisterUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message RegisterUserResponse {
+  string message = 1;
+}
+
+message AuthenticateUserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message AuthenticateUserResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetUserRequest {
+  string username = 1;
+}
+
+message GetUserResponse {
+  string username = 1;
+  string email = 2;
+  repeated string roles = 3;
+}
+
+message UserRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UserResponse {
+  string message = 1;
+}
